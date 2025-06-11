@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Household</title>
+    <link href="style1.css" rel="stylesheet">
+    <link href="style_cal.css" rel="stylesheet">
+    <script src="myscript.js"></script>
+
+
+</head>
+<body>
+    <div class="navbar1">
+        <div class="reward">
+            <img src="coin.png" style="height:35px; width: 35px;">
+            <span id="numberDisplay">0</span>
+    </div>
+       <div class="user">
+        <img src="user.png" style="height:35px; width: 35px;">
+        <span style="color: white; font-size: 20px; margin-top: 0px;">User</span>
+       </div> 
+       
+        
+        </div>
+
+        <iframe src="content.html" style="height:900px; width:350px; border:0;"></iframe>
+<div class="content" style="align-items: center; overflow-y:scroll; width:950px; height:800px; display:inline-block;">
+            
+<div id="track">
+  <h1>Track Your Record</h1>
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        
+    }
+    .calendar-container {
+        width: 350px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        width: 14.2%;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+    .past {
+        background-color: rgb(149, 216, 149);
+        color:white;
+    }
+</style>
+</head>
+<body>
+
+<div class="calendar-container">
+  <div class="calendar-header">
+      <button id="prev-month">Previous</button>
+      <h2 id="month-year"></h2>
+      <button id="next-month">Next</button>
+  </div>
+  <table id="calendar">
+      <thead>
+          <tr>
+              <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+          </tr>
+      </thead>
+      <tbody></tbody>
+  </table>
+  <p><strong>Past Dates Count (This Month):</strong> <span id="past-count">0</span></p>
+</div>
+
+<script>
+  
+
+  const monthYear = document.getElementById("month-year");
+  const calendarBody = document.querySelector("#calendar tbody");
+  const pastCountDisplay = document.getElementById("past-count");
+  const prevBtn = document.getElementById("prev-month");
+  const nextBtn = document.getElementById("next-month");
+
+  let currentDate = new Date();
+
+  function generateCalendar(year, month) {
+      calendarBody.innerHTML = "";
+      let pastCount = 0;
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Reset today’s time for accurate comparison
+
+      monthYear.textContent = `${new Date(year, month).toLocaleString('default', { month: 'long' })} ${year}`;
+
+      let row = document.createElement("tr");
+      for (let i = 0; i < firstDay; i++) {
+          row.appendChild(document.createElement("td"));
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+          let date = new Date(year, month, day);
+          date.setHours(0, 0, 0, 0); // Reset date time for proper comparison
+
+          let cell = document.createElement("td");
+          cell.textContent = day;
+
+          // Count past dates only for the currently displayed month
+          if (date.getTime() < today.getTime() && month === today.getMonth() && year === today.getFullYear()) {
+              cell.classList.add("past");
+              pastCount++;
+          }
+
+          row.appendChild(cell);
+
+          if ((firstDay + day) % 7 === 0) {
+              calendarBody.appendChild(row);
+              row = document.createElement("tr");
+          }
+      }
+
+      if (row.children.length > 0) {
+          calendarBody.appendChild(row);
+      }
+
+      pastCountDisplay.textContent = pastCount; // Display count for the current month only
+  }
+
+  prevBtn.addEventListener("click", () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+  });
+
+  nextBtn.addEventListener("click", () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+  });
+
+  generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+</script>
+
+<hr>
+
+<div  id="pay">
+  <h1>Pay Bill</h1>
+
+  <div class="bill-container">
+    <h2>Billing Calculator</h2>
+    <table>
+      <tr>
+        <td><label for="day">Number of Days:</label></td>
+        <td><input type="number" id="day" class="form-input" placeholder="Number of days waste has been collected" /></td>
+      </tr>
+  
+      <tr>
+        <td>
+          <label for="rate">Current Rate(Rs. /day):</label>
+        </td>
+        <td>
+          <input type="number" id="rate" class="form-input" placeholder="Rs. 10/day" />
+        </td>
+      </tr>
+  
+      <tr>
+        <td>
+          <label for="taxPercent">Tax (%) :</label>
+        </td>
+        <td>
+          <input type="number" id="taxPercent" class="form-input" placeholder="Enter tax percentage" />
+        </td>
+      </tr>
+    </table>
+      <button class="button" onclick="calculateTotal()">Calculate Total</button>
+  
+      <div class="result" id="result"></div>
+   
+    
+  </div>
+
+  <hr>
+          
+  <div class="card-details">
+    <h2>Enter Card Details</h2>
+      <table>
+        <tr>
+            <td>
+              <label for="card">Enter Card Number:</label>
+            </td>
+            <td>
+              <input type="number" id="card" placeholder="Card Number" maxlength="16">
+            </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="expiry">Expiry Date (MM/YY):</label>
+          </td>
+          <td>
+            <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="cvv">CVV:</label>
+          </td>
+          <td>
+            <input type="password" id="cvv" placeholder="CVV" maxlength="3">
+          </td>
+        </tr>
+          
+  </table>
+              
+  </div>
+  
+          <button id="updateButton">Pay Bill</button>
+      </section></center>
+      <br>
+      <div id="confirmation-popup" class="popup hidden">
+          <h2>Payment has been processed</h2>
+          <div class="checkmark">✔</div>
+          <a href='/'><button onclick="closePopup()">Close</button></a>
+      </div>
+      
+      </form></div>
+  
+
+<hr>
+
+<div id="notice">
+  <h1>Notice</h1>
+  <p style="color: gray;">No announcements to display yet.</p>
+</div>
+
+<hr>
+
+<div  id="comp">
+  <h1>Complaint</h1>
+  <form>
+    <table>
+      <tr>
+        <td> <p style="font-size:20px;"><b> Subject of Complaint: </b></p> </td>
+        <td><div id="name"><input list="subject" name="subject" required><span class="error"></span>
+             <datalist id="subject">
+             <option value="Inconsistent Pickup Schedules">
+             <option value="Health & Safety Concern">
+             <option value="Billing Error">
+             <option value="Environmental Concern">
+             <option value="Others">
+          </div></td>
+        </tr>
+        
+        <tr>
+        <td> <label for="msg" style="font-size:20px;"><b>Description:</b></label> </td>
+        <td> <textarea name="message" rows="20" cols="25">Let's know your concern...</textarea> </td>
+        </tr>
+      
+        <tr>
+        <td colspan="2"> <button id="submit" onclick="msgFunction()">Submit</button></td>
+        </tr>
+      
+    </table>
+  </form>
+</div>
+
+<hr>
+  
+<div id="reward">
+  <h1 >Reward</h1>
+  <h3>You've earned <span id="numberDisplay">0</span> coins so far</h3>
+  <p>Keep up the green work to get more and many perks.</p>
+
+</div>
+<script>
+  function updateNumber() {
+    // Get the current number from the span
+    let number = parseInt(document.getElementById("numberDisplay").textContent);
+    number += 10; // Increase by 10
+    document.getElementById("numberDisplay").textContent = number; // Update displayed number
+}
+// Add event listener to the button
+document.getElementById("updateButton").addEventListener("click", updateNumber);
+</script>
+
+<hr>
+
+</div>
+
+<div class="footer1">
+       
+        &#169 2025 Eco_Bytes<br> All Rights Reserved.<br>
+           
+</div>
+</body>
+
+<script src="script_cal.js"></script>
+
+
+</html>
+

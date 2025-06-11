@@ -1,0 +1,116 @@
+body {
+    background-color: aliceblue;
+    text-align:center;
+} .reward {
+    border-radius: 5px;
+    border-color: #D9F5F0;
+    width:250px;
+} .navbar1, .footer1 {
+    background-color: #020d24;
+    color:#D9F5F0;
+    height:100px;
+
+} .content h2 {
+    color:#020d24;
+    
+  } li:hover {
+    background-color: #020d24;
+    padding:7px;
+    border-radius: 5px;
+
+} a:link, a:active, a:hover, a:visited {
+    color:white;
+    text-decoration:none;
+} h1 {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+/* Reset some default styles */
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar1 {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #333;
+    padding: 10px;
+}
+
+.reward img {
+    margin-left: 10px;
+    height: 35px;
+    width: 35px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Style for the left-side iframe
+iframe {
+    height: 800px;
+    width: 350px;
+    border: 0;
+    margin-right: 20px;
+}
+
+/* Styling the main content area */
+h2 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.bill form {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.bill input {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.footer1 {
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+.hidden {
+    display: none;
+} .user {
+    width:500px;
+
+} 
