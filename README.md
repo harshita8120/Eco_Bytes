@@ -1,0 +1,4 @@
+# Eco_Bytes
+
+<br>
+<i><b> This project focuses on building an efficient Waste Management System. Eco_Bytes provides a platform to connect users, governments and service providers. It helps managing all kinds of waste ranging from household waste to industrial and hospital waste. Users can easily track the entire process from waste collection to waste disposal. Every month or week (as per user's convenience) bill is generated automatically. Eco_Bytes also introduces a reward-based system to encourage public behaviour towards responsible waste management. Each time user pays his/her bill, they're rewarded some coins, these coins can be later redeemed for various government services and get some exemptions. It could be in terms of seat preferences in train reservations, tax exemptions, discounts on government services etc. </b></i>
